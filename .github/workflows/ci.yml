@@ -13,9 +13,9 @@ jobs:
       - uses: astral-sh/setup-uv@v5
 
       - name: Lint (ruff)
-        run: uvx ruff check .
+        run: uvx ruff@0.17.2 check .
 
-      - name: Lockfile aktuell
+      - name: Lockfile konsistent mit pyproject.toml
         run: uv lock --check
 
       - name: Holdout unverändert seit Commit vor dem ersten Code
@@ -24,11 +24,12 @@ jobs:
       - name: Datenhygiene (nur *.example-Adressen, keine Home-Pfade)
         run: |
           bad=$(git grep -h -o -I -E '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}' -- . ':!uv.lock' \
-            | grep -v -E '\.example$|noreply@anthropic\.com$|users\.noreply\.github\.com$' | sort -u || true)
-          paths=$(git grep -n -I -E '/(Users|home)/[a-z]' -- . ':!uv.lock' || true)
+            | grep -v -E '\.example$|noreply@anthropic\.com$|^90839438\+cazualderpy@users\.noreply\.github\.com$' | sort -u || true)
+          paths=$(git grep -n -I -i -E '/(Users|home)/[a-z]' -- . ':!uv.lock' || true)
           if [ -n "$bad$paths" ]; then echo "$bad"; echo "$paths"; exit 1; fi
 
-      # CPU-Torch statt der CUDA-Wheels aus dem Lockfile: spart mehrere GB Download
+      # CPU-Torch statt der CUDA-Wheels aus dem Lockfile: spart mehrere GB Download.
+      # Die Testumgebung folgt deshalb pyproject.toml, nicht exakt uv.lock.
       - name: Abhängigkeiten
         run: |
           uv venv --python 3.12
