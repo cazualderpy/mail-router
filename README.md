@@ -13,7 +13,7 @@ Software: siehe [So wurde das gebaut](#so-wurde-das-gebaut).
 
 ```mermaid
 flowchart LR
-    U[Browser / curl] -->|":8000"| G[gateway<br/>nginx]
+    U[Browser / curl] -->|":8000"| G["nginx-Gateway<br/>(edge + backend)"]
     subgraph edge["Netz edge"]
         G
     end
@@ -28,7 +28,7 @@ flowchart LR
   committet, `make setup` trainiert sie (Details: [docs/training.md](docs/training.md)).
 - **Felder:** LangChain-Kette mit `ChatOllama` und strukturierter Ausgabe auf ein Pydantic-Schema.
 - **Netz:** `api` und `ollama` hängen nur im `internal: true`-Netz. Nur der nginx-Gateway ist zusätzlich
-  im `edge`-Netz und veröffentlicht Port 8000.
+  im `edge`-Netz und veröffentlicht Port 8000, gebunden nur an `127.0.0.1` (nicht im LAN erreichbar, da der Endpunkt keine Authentifizierung hat). Das Gateway hängt in beiden Netzen (edge und backend).
 - **Vertrag:** `POST /route` mit `{sender, subject, body}` liefert `{type, confidence, fields}`;
   `GET /health`. Genaue Definition in der [Spec](docs/superpowers/specs/2026-10-25-mail-router-design.md).
 
@@ -48,20 +48,22 @@ curl -s localhost:8000/route -H 'content-type: application/json' \
   -d '{"sender":"max@praxis-patient.example","subject":"Termin","body":"Ich brauche nächste Woche einen Termin."}'
 ```
 
-Zusätzliche Befehle: `make test` (pytest), `make egress-check`, `make down`.
+Der Port ist nur an `127.0.0.1` gebunden. Zusätzliche Befehle: `make test` (pytest), `make egress-check`, `make down`.
+
+Tests: `make test` bzw. `uv run pytest` führt die schnelle Suite aus; `uv run pytest -m slow` braucht trainierte Gewichte in `models/classifier`.
 
 `make setup` lädt das Basismodell, erzeugt die Trainingsdaten, trainiert den Klassifikator
 (ca. 1 min auf Apple-GPU/MPS, auf der CPU länger), lädt `qwen2.5:3b` (ca. 2 GB) und baut das api-Image
 (ca. 1,2 GB). Die Dauer hängt stark von der Bandbreite ab.
 
-**Gemessen:** Ein warmer `/route`-Aufruf braucht ca. 4 s auf der CPU im Docker-Container (8 GB RAM).
+**Gemessen:** Median 1,5 s pro `/route`-Aufruf über die 60 Holdout-Mails (warmes Modell, CPU im Docker-Container, 8 GB RAM); der erste Aufruf nach dem Start ist langsamer (Modellladen). Ein einzelner Aufruf während des Builds lag bei ca. 4 s.
 
 **Kein Internet zur Laufzeit, prüfbar:** `make egress-check` versucht, aus `api` und `ollama` nach außen zu
 verbinden, und meldet `EGRESS BLOCKED`, wenn alles scheitert.
 
 ## So wurde das gebaut
 
-Ziel war ein nachvollziehbarer Agenten-Prozess mit unabhängiger Prüfung. Die orchestrierende Sitzung lief
+Der vollständige Verlauf steht im [Build-Log](docs/build-log.md). Ziel war ein nachvollziehbarer Agenten-Prozess mit unabhängiger Prüfung. Die orchestrierende Sitzung lief
 auf Claude Opus, die ausführenden Builder- und Reviewer-Subagents auf Claude Sonnet. Verwendet wurden die
 Superpowers-Skills (`brainstorming`, `writing-plans`, `subagent-driven-development`) in Claude Code.
 
@@ -70,9 +72,10 @@ Superpowers-Skills (`brainstorming`, `writing-plans`, `subagent-driven-developme
 2. **Reviewer-Check der Spec.** Ein separater Reviewer prüfte die Spec auf Lücken und Widersprüche, bevor sie
    freigegeben wurde.
 3. **Holdout vor dem Code.** Der Orchestrator schrieb 60 Szenarien (ca. 10 je Typ, inkl. schwieriger Fälle)
-   und ein `eval.py` von Hand, außerhalb des Repos. Bauende Agenten können sie nicht lesen:
-   [`.claude/settings.json`](.claude/settings.json) enthält Deny-Regeln, [`CLAUDE.md`](CLAUDE.md) verbietet
-   Suchen und Nachbauen. Die Hashes in [`holdout.sha256`](holdout.sha256) wurden **vor dem ersten
+   und ein `eval.py` von Hand, außerhalb des Repos. Der Zugriff für bauende Agenten ist
+   über Deny-Regeln in [`.claude/settings.json`](.claude/settings.json) gesperrt (Read, Edit und Bash auf den
+   Pfad; Best Effort, keine Sandbox), und die Prompts erwähnen den Holdout nie. [`CLAUDE.md`](CLAUDE.md)
+   verbietet Suchen und Nachbauen. Die Hashes in [`holdout.sha256`](holdout.sha256) wurden **vor dem ersten
    Code-Commit** committed. So lässt sich später belegen, dass der Holdout danach nicht verändert wurde.
 4. **Plan.** Die Spec wurde in 7 kleine Tasks zerlegt: [Implementierungsplan](docs/superpowers/plans/2026-10-25-mail-router.md).
 5. **Ein Subagent pro Task, mit Review.** Jeder Task wurde von einem frischen Builder-Agenten umgesetzt
@@ -96,7 +99,7 @@ Median-Latenz 1,5 s, ohne Nachbesserungsrunde. Details und Fehlfälle stehen in 
 - **Nur synthetische Daten.** Der Klassifikator erreicht auf den eigenen Validierungsdaten Accuracy 1.0. Das zeigt
   nur, dass die synthetischen Daten leicht sind, nicht dass der Router in der Praxis so gut ist. Aussagekräftig
   ist allein der unabhängige Holdout (siehe Abnahme).
-- **CPU-Latenz.** Rund 4 s pro Mail warm, deutlich mehr beim ersten Aufruf nach dem Start. Kein GPU-Zugriff in Docker Desktop.
+- **CPU-Latenz.** Median 1,5 s pro Mail bei warmem Modell (Holdout, 60 Mails), deutlich mehr beim ersten Aufruf nach dem Start. Kein GPU-Zugriff in Docker Desktop.
 - **Kleines Sprachmodell.** `qwen2.5:3b` extrahiert Felder unzuverlässiger als große Modelle.
 - **Kein Medizinprodukt.** Kein Einsatz mit echten Patientendaten, keine Mail-Anbindung, keine Benutzerverwaltung,
   keine Persistenz, kein Sicherheits- oder Datenschutz-Audit.

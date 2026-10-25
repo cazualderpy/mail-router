@@ -1,6 +1,6 @@
 # Design: Lokaler MVZ-Posteingangs-Router
 
-Stand: 2026-10-25 · Status: Entwurf zur Freigabe
+Stand: 2026-10-25 · Status: freigegeben und umgesetzt
 
 ## 1. Intent und das Warum
 
