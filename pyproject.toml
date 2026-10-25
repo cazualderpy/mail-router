@@ -25,5 +25,6 @@ build-backend = "hatchling.build"
 packages = ["mail_router"]
 
 [tool.pytest.ini_options]
-addopts = "-m 'not slow'"
+pythonpath = ["."]
+addopts ="-m 'not slow'"
 markers = ["slow: langsame Tests (Modelle, Training)"]
