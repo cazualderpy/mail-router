@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(~/.mail-router-holdout/**)",
+      "Edit(~/.mail-router-holdout/**)",
+      "Bash(*mail-router-holdout*)"
+    ]
+  }
+}

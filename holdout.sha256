@@ -1,0 +1,4 @@
+# SHA-256 der unabhängigen Holdout-Dateien, angelegt vor dem ersten Code-Commit.
+# Die Dateien liegen bis zur Abnahme außerhalb des Repos und werden danach unter holdout/ veröffentlicht.
+4b9d3ecf8a2853ac9e9676910b7b2960b6804766087fb9c9997039067f48122f  eval.py
+3769e8c1e6be5d33a03690f43a414a911e9328212835f4562c339156ef5ac219  scenarios.jsonl
