@@ -176,14 +176,14 @@ CORE_EN = {
         "I have the flu and cannot work. Please send me a sick note, {v}.",
     ],
     "befund": [
-        ("I would like to know whether my lab results have come in yet.", "Asks whether the lab results have arrived."),
-        ("Could you send me the report of my last MRI scan, please?", "Requests the MRI report."),
-        ("Are my blood test results ready? The doctor said they would arrive this week.", "Asks about blood test results."),
+        ("I would like to know whether my lab results have come in yet.", "Fragt, ob die Laborergebnisse eingetroffen sind."),
+        ("Could you send me the report of my last MRI scan, please?", "Bittet um den MRT-Befund."),
+        ("Are my blood test results ready? The doctor said they would arrive this week.", "Fragt nach den Blutergebnissen."),
     ],
     "sonstiges": [
-        ("what are your opening hours on public holidays?", "Asks about holiday opening hours."),
-        ("I recently moved and need to update my address in your records.", "Reports an address change."),
-        ("I received an invoice that I do not understand. Could you check it?", "Asks for an invoice review."),
+        ("what are your opening hours on public holidays?", "Fragt nach den Öffnungszeiten an Feiertagen."),
+        ("I recently moved and need to update my address in your records.", "Teilt eine Adressänderung mit."),
+        ("I received an invoice that I do not understand. Could you check it?", "Bittet um Prüfung einer Rechnung."),
     ],
 }
 
@@ -208,8 +208,6 @@ SUBJECTS = {
                "Untersuchungsergebnis", "befund?"],
     "au": ["Krankschreibung", "AU", "AU-Bescheinigung", "Krankmeldung", "Arbeitsunfähigkeit", "krank",
            "Krankschreibung bitte"],
-    "sonstiges": ["Frage", "Anfrage", "Allgemeine Anfrage", "Info", "Rechnung", "Öffnungszeiten", "Hallo",
-                  "Kurze Frage", "Feedback"],
 }
 
 SUBJECTS_EN = {
@@ -218,7 +216,29 @@ SUBJECTS_EN = {
     "ueberweisung": ["Referral request", "Referral"],
     "befund": ["Test results", "Lab results"],
     "au": ["Sick note", "Sick leave certificate"],
-    "sonstiges": ["Question", "Opening hours"],
+}
+
+GENERIC_DE = ["", "Anfrage", "Frage", "Hallo", "Re: Ihre Praxis", "Kurze Frage", "Nachricht", "Anliegen",
+              "Guten Tag", "Bitte um Rückmeldung", "Ihre Praxis", "Kurze Anfrage", "Info", "Hilfe"]
+GENERIC_EN = ["", "Question", "Hello", "Quick question", "Message", "Request", "Re: your practice", "Inquiry"]
+KEYWORD_SUBJECT_SHARE = 0.28
+# Themenspezifische Betreffs für sonstiges, gebunden an den gewählten Kerntext (Präfix des Kerntexts)
+SONSTIGES_SUBJECT = {
+    "wie sind Ihre Öffnungszeiten": "Öffnungszeiten",
+    "Ich habe eine Rechnung": "Rechnung unklar",
+    "Ich bin umgezogen": "Adressänderung",
+    "Meine Krankenkasse hat gewechselt": "Neue Krankenkasse",
+    "Ich möchte mich über die lange": "Beschwerde Wartezeit",
+    "Haben Sie einen Parkplatz": "Anfahrt",
+    "Wir würden Ihnen gern unser neues": "Software für Ihre Praxis",
+    "Ich möchte mich für die gute": "Dankeschön",
+    "Können Sie mir die Bescheinigung über meine Impfungen": "Impfbescheinigung",
+    "Ist Dr. Weber": "Urlaub",
+    "Mein Sohn braucht eine Bescheinigung für den Sportverein": "Sportbescheinigung",
+    "Bitte streichen Sie mich": "Newsletter abbestellen",
+    "what are your opening hours": "Opening hours",
+    "I recently moved": "Change of address",
+    "I received an invoice": "Invoice",
 }
 
 SECONDARY_DE = {
@@ -312,6 +332,7 @@ def _make(rng: random.Random, fakers: dict[str, Faker], mtype: str) -> Example:
         core_text, anliegen = core
     else:
         core_text, anliegen = core, rng.choice(ANLIEGEN[mtype])
+    core_text_raw = core_text
     intro = "" if en else rng.choice(INTRO_DE)
     if intro:
         core_text = intro + (core_text[0].lower() + core_text[1:] if core_text[0].isupper() and not core_text.startswith(("Dr", "Ich")) else core_text)
@@ -390,8 +411,14 @@ def _make(rng: random.Random, fakers: dict[str, Faker], mtype: str) -> Example:
     if "{" in body:  # Absicherung
         raise AssertionError(body)
 
-    subject = rng.choice(SUBJECTS_EN[mtype] if en else SUBJECTS[mtype])
-    if rng.random() < 0.1:
+    if rng.random() < KEYWORD_SUBJECT_SHARE:
+        if mtype == "sonstiges":
+            subject = next(v for k, v in SONSTIGES_SUBJECT.items() if core_text_raw.startswith(k))
+        else:
+            subject = rng.choice(SUBJECTS_EN[mtype] if en else SUBJECTS[mtype])
+    else:
+        subject = rng.choice(GENERIC_EN if en else GENERIC_DE)
+    if subject and not subject.startswith("Re:") and rng.random() < 0.1:
         subject = "Re: " + subject
     if lower_mode:
         subject = subject.lower()
@@ -399,7 +426,7 @@ def _make(rng: random.Random, fakers: dict[str, Faker], mtype: str) -> Example:
     if rng.random() < 0.3:
         sender = f"{_slug(sender_first)[:1]}{_slug(sender_last)}{rng.randint(1, 99)}@{rng.choice(DOMAINS)}"
 
-    anliegen = anliegen.replace("{v}", value or "")
+    anliegen = anliegen.replace("{v}", f"„{value}“" if en and value else (value or ""))
     fields = Fields(
         patient_name=patient_name if name_known else None,
         geburtsdatum=bd.isoformat() if dob_known else None,
