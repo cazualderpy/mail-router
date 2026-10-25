@@ -9,9 +9,8 @@ Rezeptanfragen, Überweisungen, Befundnachfragen, Krankmeldungen. Der Router ord
 einem Typ zu und zieht die relevanten Felder heraus, **vollständig lokal**. Keine Mail und kein
 Feld verlässt die Maschine. Das ist das Datenschutz-Argument.
 
-Das Repo ist eine Arbeitsprobe für ein Bewerbungsgespräch am 27.10.2026. Bewertet wird vor
-allem, **wie mit KI-Agenten gebaut wurde**. Die Prüfer lesen das Repo selbstständig, ohne
-Begleitung. Deshalb ist der Bauprozess das eigentliche Produkt. Er muss im Repo nachvollziehbar
+Das Repo ist ein Demo-Projekt. Im Mittelpunkt steht, **wie mit KI-Agenten gebaut wurde**.
+Leser sollen das Repo ohne Begleitung verstehen können. Deshalb ist der Bauprozess das eigentliche Produkt. Er muss im Repo nachvollziehbar
 sein. Die Software muss funktionieren, aber nicht glänzen.
 
 ## 2. Ziele, Nicht-Ziele, Anti-Ziele

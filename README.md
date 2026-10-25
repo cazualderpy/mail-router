@@ -6,7 +6,7 @@ extrahiert die relevanten Felder. **Alles läuft lokal**: Die Container, die Mai
 keine Mail verlässt die Maschine. Es werden ausschließlich synthetische Daten verwendet
 (Adressen nur `*.example`).
 
-Das Repo ist eine Arbeitsprobe. Der Bauprozess mit KI-Agenten ist mindestens so wichtig wie die
+Das Repo ist ein Demo-Projekt. Der Bauprozess mit KI-Agenten ist mindestens so wichtig wie die
 Software: siehe [So wurde das gebaut](#so-wurde-das-gebaut).
 
 ## Architektur
