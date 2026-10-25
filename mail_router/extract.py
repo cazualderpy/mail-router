@@ -1,4 +1,5 @@
 """Feldextraktion per LangChain-Kette (Ollama) mit deterministischer Nachbearbeitung."""
+import datetime
 import re
 
 from langchain_core.prompts import ChatPromptTemplate
@@ -17,9 +18,10 @@ _VERBATIM = ("patient_name", "wunschtermin", "medikament", "fachrichtung", "au_z
 
 
 def _iso(y: int, m: int, d: int) -> str | None:
-    if 1 <= m <= 12 and 1 <= d <= 31 and 1850 <= y <= 2100:
-        return f"{y:04d}-{m:02d}-{d:02d}"
-    return None
+    try:
+        return datetime.date(y, m, d).isoformat()
+    except ValueError:
+        return None
 
 
 def parse_birthdate(s: str | None) -> str | None:

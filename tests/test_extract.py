@@ -5,7 +5,7 @@ from mail_router.extract import extract, normalize_fields, parse_birthdate
 from mail_router.schema import Fields, RouteRequest
 
 
-@pytest.mark.parametrize("raw,iso", [("02.11.1990","1990-11-02"),("*07.06.1968","1968-06-07"),("12 March 1979","1979-03-12"),("12. März 1979","1979-03-12"),("1985-09-30","1985-09-30"),("geb. am 3.3.1938","1938-03-03"),("unbekannt",None),(None,None)])
+@pytest.mark.parametrize("raw,iso", [("02.11.1990","1990-11-02"),("*07.06.1968","1968-06-07"),("12 March 1979","1979-03-12"),("12. März 1979","1979-03-12"),("1985-09-30","1985-09-30"),("geb. am 3.3.1938","1938-03-03"),("unbekannt",None),("31.02.1990",None),("31.04.1990",None),(None,None)])
 def test_parse_birthdate(raw, iso):
     assert parse_birthdate(raw) == iso
 
