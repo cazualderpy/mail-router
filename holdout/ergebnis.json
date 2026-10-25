@@ -1,0 +1,994 @@
+{
+  "summary": {
+    "n": 60,
+    "type_accuracy": 0.933,
+    "macro_f1": 0.932,
+    "f1_per_type": {
+      "termin": 0.947,
+      "rezept": 0.952,
+      "ueberweisung": 0.952,
+      "befund": 0.947,
+      "au": 0.952,
+      "sonstiges": 0.842
+    },
+    "field_hit_rate": 0.964,
+    "field_hit_rate_per_field": {
+      "patient_name": 0.95,
+      "geburtsdatum": 1.0,
+      "wunschtermin": 0.933,
+      "medikament": 1.0,
+      "fachrichtung": 0.967,
+      "au_zeitraum": 0.933
+    },
+    "anliegen_nonempty_rate": 0.983,
+    "errors": 0,
+    "median_latency_s": 1.48,
+    "passed": true,
+    "thresholds": {
+      "type_accuracy": 0.85,
+      "field_hit_rate": 0.7
+    }
+  },
+  "rows": [
+    {
+      "id": "h001",
+      "expected_type": "termin",
+      "pred_type": "termin",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.83,
+      "error": null
+    },
+    {
+      "id": "h002",
+      "expected_type": "termin",
+      "pred_type": "termin",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 2.71,
+      "error": null
+    },
+    {
+      "id": "h003",
+      "expected_type": "termin",
+      "pred_type": "termin",
+      "field_hits": {
+        "patient_name": false,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 3.26,
+      "error": null
+    },
+    {
+      "id": "h004",
+      "expected_type": "termin",
+      "pred_type": "termin",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 3.21,
+      "error": null
+    },
+    {
+      "id": "h005",
+      "expected_type": "termin",
+      "pred_type": "termin",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": false,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 5.64,
+      "error": null
+    },
+    {
+      "id": "h006",
+      "expected_type": "termin",
+      "pred_type": "termin",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": false,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 3.03,
+      "error": null
+    },
+    {
+      "id": "h007",
+      "expected_type": "termin",
+      "pred_type": "sonstiges",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": false,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 2.65,
+      "error": null
+    },
+    {
+      "id": "h008",
+      "expected_type": "termin",
+      "pred_type": "termin",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.59,
+      "error": null
+    },
+    {
+      "id": "h009",
+      "expected_type": "termin",
+      "pred_type": "termin",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": false,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.56,
+      "error": null
+    },
+    {
+      "id": "h010",
+      "expected_type": "termin",
+      "pred_type": "termin",
+      "field_hits": {
+        "patient_name": false,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.25,
+      "error": null
+    },
+    {
+      "id": "h011",
+      "expected_type": "rezept",
+      "pred_type": "rezept",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.42,
+      "error": null
+    },
+    {
+      "id": "h012",
+      "expected_type": "rezept",
+      "pred_type": "rezept",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.22,
+      "error": null
+    },
+    {
+      "id": "h013",
+      "expected_type": "rezept",
+      "pred_type": "rezept",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.39,
+      "error": null
+    },
+    {
+      "id": "h014",
+      "expected_type": "rezept",
+      "pred_type": "rezept",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.75,
+      "error": null
+    },
+    {
+      "id": "h015",
+      "expected_type": "rezept",
+      "pred_type": "rezept",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.59,
+      "error": null
+    },
+    {
+      "id": "h016",
+      "expected_type": "rezept",
+      "pred_type": "rezept",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.25,
+      "error": null
+    },
+    {
+      "id": "h017",
+      "expected_type": "rezept",
+      "pred_type": "rezept",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.59,
+      "error": null
+    },
+    {
+      "id": "h018",
+      "expected_type": "rezept",
+      "pred_type": "rezept",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.5,
+      "error": null
+    },
+    {
+      "id": "h019",
+      "expected_type": "rezept",
+      "pred_type": "rezept",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 2.47,
+      "error": null
+    },
+    {
+      "id": "h020",
+      "expected_type": "rezept",
+      "pred_type": "rezept",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.42,
+      "error": null
+    },
+    {
+      "id": "h021",
+      "expected_type": "ueberweisung",
+      "pred_type": "ueberweisung",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": false,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.52,
+      "error": null
+    },
+    {
+      "id": "h022",
+      "expected_type": "ueberweisung",
+      "pred_type": "ueberweisung",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.53,
+      "error": null
+    },
+    {
+      "id": "h023",
+      "expected_type": "ueberweisung",
+      "pred_type": "ueberweisung",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.61,
+      "error": null
+    },
+    {
+      "id": "h024",
+      "expected_type": "ueberweisung",
+      "pred_type": "ueberweisung",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.43,
+      "error": null
+    },
+    {
+      "id": "h025",
+      "expected_type": "ueberweisung",
+      "pred_type": "ueberweisung",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.45,
+      "error": null
+    },
+    {
+      "id": "h026",
+      "expected_type": "ueberweisung",
+      "pred_type": "ueberweisung",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": false,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.41,
+      "error": null
+    },
+    {
+      "id": "h027",
+      "expected_type": "ueberweisung",
+      "pred_type": "ueberweisung",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.46,
+      "error": null
+    },
+    {
+      "id": "h028",
+      "expected_type": "ueberweisung",
+      "pred_type": "ueberweisung",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.48,
+      "error": null
+    },
+    {
+      "id": "h029",
+      "expected_type": "ueberweisung",
+      "pred_type": "ueberweisung",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.52,
+      "error": null
+    },
+    {
+      "id": "h030",
+      "expected_type": "ueberweisung",
+      "pred_type": "ueberweisung",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.6,
+      "error": null
+    },
+    {
+      "id": "h031",
+      "expected_type": "befund",
+      "pred_type": "befund",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 4.14,
+      "error": null
+    },
+    {
+      "id": "h032",
+      "expected_type": "befund",
+      "pred_type": "befund",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.08,
+      "error": null
+    },
+    {
+      "id": "h033",
+      "expected_type": "befund",
+      "pred_type": "befund",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.35,
+      "error": null
+    },
+    {
+      "id": "h034",
+      "expected_type": "befund",
+      "pred_type": "befund",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.15,
+      "error": null
+    },
+    {
+      "id": "h035",
+      "expected_type": "befund",
+      "pred_type": "befund",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.5,
+      "error": null
+    },
+    {
+      "id": "h036",
+      "expected_type": "befund",
+      "pred_type": "rezept",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.13,
+      "error": null
+    },
+    {
+      "id": "h037",
+      "expected_type": "befund",
+      "pred_type": "befund",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.36,
+      "error": null
+    },
+    {
+      "id": "h038",
+      "expected_type": "befund",
+      "pred_type": "befund",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.2,
+      "error": null
+    },
+    {
+      "id": "h039",
+      "expected_type": "befund",
+      "pred_type": "befund",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.31,
+      "error": null
+    },
+    {
+      "id": "h040",
+      "expected_type": "befund",
+      "pred_type": "befund",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.19,
+      "error": null
+    },
+    {
+      "id": "h041",
+      "expected_type": "au",
+      "pred_type": "au",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": false
+      },
+      "anliegen_ok": true,
+      "latency_s": 4.05,
+      "error": null
+    },
+    {
+      "id": "h042",
+      "expected_type": "au",
+      "pred_type": "au",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.23,
+      "error": null
+    },
+    {
+      "id": "h043",
+      "expected_type": "au",
+      "pred_type": "au",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": false
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.44,
+      "error": null
+    },
+    {
+      "id": "h044",
+      "expected_type": "au",
+      "pred_type": "au",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.29,
+      "error": null
+    },
+    {
+      "id": "h045",
+      "expected_type": "au",
+      "pred_type": "au",
+      "field_hits": {
+        "patient_name": false,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 2.1,
+      "error": null
+    },
+    {
+      "id": "h046",
+      "expected_type": "au",
+      "pred_type": "au",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.59,
+      "error": null
+    },
+    {
+      "id": "h047",
+      "expected_type": "au",
+      "pred_type": "au",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": false
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.55,
+      "error": null
+    },
+    {
+      "id": "h048",
+      "expected_type": "au",
+      "pred_type": "au",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.51,
+      "error": null
+    },
+    {
+      "id": "h049",
+      "expected_type": "au",
+      "pred_type": "au",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.55,
+      "error": null
+    },
+    {
+      "id": "h050",
+      "expected_type": "au",
+      "pred_type": "au",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": false
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.54,
+      "error": null
+    },
+    {
+      "id": "h051",
+      "expected_type": "sonstiges",
+      "pred_type": "sonstiges",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.03,
+      "error": null
+    },
+    {
+      "id": "h052",
+      "expected_type": "sonstiges",
+      "pred_type": "sonstiges",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": false,
+      "latency_s": 0.98,
+      "error": null
+    },
+    {
+      "id": "h053",
+      "expected_type": "sonstiges",
+      "pred_type": "sonstiges",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.2,
+      "error": null
+    },
+    {
+      "id": "h054",
+      "expected_type": "sonstiges",
+      "pred_type": "sonstiges",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.12,
+      "error": null
+    },
+    {
+      "id": "h055",
+      "expected_type": "sonstiges",
+      "pred_type": "sonstiges",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.18,
+      "error": null
+    },
+    {
+      "id": "h056",
+      "expected_type": "sonstiges",
+      "pred_type": "sonstiges",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.31,
+      "error": null
+    },
+    {
+      "id": "h057",
+      "expected_type": "sonstiges",
+      "pred_type": "sonstiges",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.36,
+      "error": null
+    },
+    {
+      "id": "h058",
+      "expected_type": "sonstiges",
+      "pred_type": "sonstiges",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.66,
+      "error": null
+    },
+    {
+      "id": "h059",
+      "expected_type": "sonstiges",
+      "pred_type": "ueberweisung",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.39,
+      "error": null
+    },
+    {
+      "id": "h060",
+      "expected_type": "sonstiges",
+      "pred_type": "au",
+      "field_hits": {
+        "patient_name": true,
+        "geburtsdatum": true,
+        "wunschtermin": true,
+        "medikament": true,
+        "fachrichtung": true,
+        "au_zeitraum": true
+      },
+      "anliegen_ok": true,
+      "latency_s": 1.36,
+      "error": null
+    }
+  ]
+}

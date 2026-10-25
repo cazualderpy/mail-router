@@ -82,13 +82,14 @@ Superpowers-Skills (`brainstorming`, `writing-plans`, `subagent-driven-developme
    - Typ-Reihenfolge wich von der Spec ab (jetzt mit Literal-Sync-Test).
    - Ungültige Kalenderdaten (31.02.) wurden als Geburtsdatum akzeptiert.
    - pytest fand das Paket auf macOS nicht (versteckte `.pth`-Datei).
-6. **Unabhängige Abnahme.** Nach dem Build lief der Holdout vom Orchestrator gegen den laufenden Docker-Stack.
-   Danach wurden `holdout/` und `docs/abnahme.md` ins Repo übernommen und die Hashes geprüft.
+6. **Unabhängige Abnahme.** Nach dem Build führte der Repo-Eigentümer den Holdout gegen den laufenden
+   Docker-Stack aus. Die Sperre galt auch für den Orchestrator. Danach kamen `holdout/` und
+   `docs/abnahme.md` ins Repo, und die Hashes wurden geprüft (beide OK).
 
 **Beleg:** `git log --oneline` zeigt das Muster `feat:` pro Task, bei Bedarf gefolgt von `fix:` nach dem Review.
 
-**Abnahme-Ergebnis:** Ergebnis: siehe [docs/abnahme.md](docs/abnahme.md) (wird nach der Abnahme ergänzt, ebenso
-das Verzeichnis `holdout/`).
+**Abnahme: bestanden.** Typ-Accuracy 0,933 (Schwelle 0,85), Feld-Trefferquote 0,964 (Schwelle 0,70),
+Median-Latenz 1,5 s, ohne Nachbesserungsrunde. Details und Fehlfälle stehen in [docs/abnahme.md](docs/abnahme.md).
 
 ## Einschränkungen
 
