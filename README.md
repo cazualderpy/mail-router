@@ -88,6 +88,9 @@ Superpowers-Skills (`brainstorming`, `writing-plans`, `subagent-driven-developme
 6. **Unabhängige Abnahme.** Nach dem Build führte der Repo-Eigentümer den Holdout gegen den laufenden
    Docker-Stack aus. Die Sperre galt auch für den Orchestrator. Danach kamen `holdout/` und
    `docs/abnahme.md` ins Repo, und die Hashes wurden geprüft (beide OK).
+7. **Automatische Gates bei jedem Push.** [CI](.github/workflows/ci.yml) prüft Lint (ruff), Lockfile,
+   Holdout-Integrität gegen `holdout.sha256`, Datenhygiene (nur `*.example`-Adressen, keine Home-Pfade)
+   und die schnelle Testsuite. Die Holdout-Abnahme selbst braucht den Docker-Stack und läuft nicht in der CI.
 
 **Beleg:** `git log --oneline` zeigt das Muster `feat:` pro Task, bei Bedarf gefolgt von `fix:` nach dem Review.
 

@@ -366,7 +366,7 @@ def _make(rng: random.Random, fakers: dict[str, Faker], mtype: str) -> Example:
 
     pieces: list[str] = []
     if third:
-        who = f"{{pn}}" if name_known else ""
+        who = "{pn}" if name_known else ""
         if en:
             pieces.append(f"I am writing on behalf of {rel_en}" + (f", {who}" if who else "") + ".")
         else:

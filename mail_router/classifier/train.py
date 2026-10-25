@@ -53,7 +53,7 @@ def evaluate(model, tok, texts, labels, device) -> list[int]:
 def metrics(y_true: list[int], y_pred: list[int]) -> tuple[float, float, str, list[list[int]]]:
     n = len(MAIL_TYPES)
     cm = [[0] * n for _ in range(n)]
-    for t, p in zip(y_true, y_pred):
+    for t, p in zip(y_true, y_pred, strict=True):
         cm[t][p] += 1
     lines = [f"{'':14}{'precision':>10}{'recall':>10}{'f1-score':>10}{'support':>9}"]
     f1s = []
