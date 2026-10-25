@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Mail-Router Testseite</title>
+<style>
+  body { font-family: sans-serif; max-width: 40rem; margin: 2rem auto; padding: 0 1rem; }
+  label { display: block; margin-top: 1rem; font-weight: bold; }
+  input, textarea { width: 100%; box-sizing: border-box; font: inherit; padding: .4rem; }
+  button { margin-top: 1rem; padding: .5rem 1.2rem; }
+  pre { background: #f2f2f2; padding: 1rem; overflow-x: auto; }
+</style>
+</head>
+<body>
+<h1>Mail-Router</h1>
+<form id="f">
+  <label for="sender">Absender</label>
+  <input id="sender" name="sender" value="patient@mail.example">
+  <label for="subject">Betreff</label>
+  <input id="subject" name="subject">
+  <label for="body">Text</label>
+  <textarea id="body" name="body" rows="8"></textarea>
+  <button type="submit">Senden</button>
+</form>
+<pre id="out">Noch kein Ergebnis.</pre>
+<script>
+document.getElementById("f").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const out = document.getElementById("out");
+  const payload = {
+    sender: document.getElementById("sender").value,
+    subject: document.getElementById("subject").value,
+    body: document.getElementById("body").value,
+  };
+  out.textContent = "...";
+  try {
+    const r = await fetch("/route", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(payload),
+    });
+    out.textContent = JSON.stringify(await r.json(), null, 2);
+  } catch (err) {
+    out.textContent = "Fehler: " + err;
+  }
+});
+</script>
+</body>
+</html>
