@@ -2,7 +2,7 @@ from typing import Literal
 
 from pydantic import BaseModel, model_validator
 
-MAIL_TYPES: tuple[str, ...] = ("termin", "rezept", "ueberweisung", "au", "befund", "sonstiges")
+MAIL_TYPES: tuple[str, ...] = ("termin", "rezept", "ueberweisung", "befund", "au", "sonstiges")
 
 TYPE_FIELDS: dict[str, str | None] = {
     "termin": "wunschtermin",
@@ -37,7 +37,7 @@ class Fields(BaseModel):
 
 
 class RouteResponse(BaseModel):
-    type: Literal["termin", "rezept", "ueberweisung", "au", "befund", "sonstiges"]
+    type: Literal["termin", "rezept", "ueberweisung", "befund", "au", "sonstiges"]
     confidence: float
     fields: Fields
 

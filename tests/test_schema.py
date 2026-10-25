@@ -1,7 +1,9 @@
+from typing import get_args
+
 import pytest
 from pydantic import ValidationError
 
-from mail_router.schema import MAIL_TYPES, TYPE_FIELDS, Fields, RouteRequest, to_text
+from mail_router.schema import MAIL_TYPES, TYPE_FIELDS, Fields, RouteRequest, RouteResponse, to_text
 
 
 def test_route_request_rejects_empty_mail():
@@ -22,3 +24,11 @@ def test_to_text():
 
 def test_type_fields_cover_all_types():
     assert set(TYPE_FIELDS) == set(MAIL_TYPES)
+
+
+def test_mail_types_order():
+    assert MAIL_TYPES == ("termin", "rezept", "ueberweisung", "befund", "au", "sonstiges")
+
+
+def test_response_literal_matches_mail_types():
+    assert get_args(RouteResponse.model_fields["type"].annotation) == MAIL_TYPES
