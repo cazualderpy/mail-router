@@ -2,7 +2,7 @@
 
 Ein Medizinisches Versorgungszentrum bekommt täglich Patientenmails. Dieser Router ordnet jede Mail
 einem von sechs Typen zu (`termin`, `rezept`, `ueberweisung`, `befund`, `au`, `sonstiges`) und
-extrahiert die relevanten Felder. **Alles läuft lokal**: Zur Laufzeit hat kein Container Internetzugang,
+extrahiert die relevanten Felder. **Alles läuft lokal**: Die Container, die Mails verarbeiten (api, ollama), haben zur Laufzeit keinen Internetzugang; nur ein nginx-Gateway reicht Port 8000 durch,
 keine Mail verlässt die Maschine. Es werden ausschließlich synthetische Daten verwendet
 (Adressen nur `*.example`).
 
